@@ -9,6 +9,10 @@ public class Input {
         this.status = status;
     }
 
+    public boolean getStatus() {
+        return status;
+    }
+
     public void setStatus(boolean status) {
         this.status = status;
     }
