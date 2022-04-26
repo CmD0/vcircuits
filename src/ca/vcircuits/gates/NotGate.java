@@ -1,8 +1,11 @@
 package ca.vcircuits.gates;
 
-public class NotGate extends Gate {
+public class NotGate implements Gate {
     
-    protected boolean a = false;
+    private boolean a = false;
+
+    private boolean o = false;
+
 
     public NotGate() {
     }
@@ -13,12 +16,16 @@ public class NotGate extends Gate {
 
     public void setA(boolean a) {
         this.a = a;
-        update();
     }
 
     @Override
-    protected void update() {
+    public void update() {
         o = !a;
+    }
+
+    @Override
+    public boolean isOn() {
+        return o;
     }
 
 }

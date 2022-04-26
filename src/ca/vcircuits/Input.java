@@ -1,19 +1,19 @@
 package ca.vcircuits;
 
 public class Input {
-    private boolean status = false;
+    private boolean on = false;
 
     public Input() {}
 
-    public Input(boolean status) {
-        this.status = status;
+    public Input(boolean on) {
+        this.on = on;
     }
 
-    public boolean getStatus() {
-        return status;
+    public boolean isOn() {
+        return on;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setOn(boolean on) {
+        this.on = on;
     }
 }

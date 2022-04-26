@@ -1,16 +1,8 @@
 package ca.vcircuits.gates;
 
-public abstract class Gate {
-    
-    protected boolean o = false;
+public interface Gate {
 
-    public Gate() {
+    public boolean isOn();
 
-    }
-
-    public boolean isOn() {
-        return o;
-    }
-    
-    protected abstract void update();
+    public void update();
 }

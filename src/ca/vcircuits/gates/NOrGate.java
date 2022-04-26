@@ -1,8 +1,10 @@
 package ca.vcircuits.gates;
 
-public class NOrGate extends Gate {
+public class NOrGate implements Gate {
     private NotGate not = new NotGate();
     private OrGate or = new OrGate();
+
+    private boolean o = false;
 
     public NOrGate() {}
 
@@ -13,17 +15,20 @@ public class NOrGate extends Gate {
 
     public void setA(boolean a) {
         or.setA(a);
-        update();
     }
 
     public void setB(boolean b) {
         or.setB(b);
-        update();
     }
 
     @Override
-    protected void update() {
+    public void update() {
         not.setA(or.isOn());
         o = not.isOn();
+    }
+
+    @Override
+    public boolean isOn() {
+        return o;
     }
 }

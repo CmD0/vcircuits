@@ -6,7 +6,7 @@ import ca.vcircuits.gates.AndGate;
 import ca.vcircuits.gates.OrGate;
 import ca.vcircuits.gates.XOrGate;
 
-public class FullAdder1B {
+public class FullAdder1B implements Circuit {
     private Input a;
     private Input b;
     private Input carryIn;
@@ -20,54 +20,51 @@ public class FullAdder1B {
     private Output sum = new Output();
     private Output carryOut = new Output();
 
+    public FullAdder1B() {}
+
     public FullAdder1B(boolean a, boolean b, boolean cin) {
         setA(a);
         setB(b);
         setCarryIn(cin);
     }
 
-
     public void setA(boolean a) {
-        this.a.setStatus(a);
-        update();
+        this.a.setOn(a);
     }
 
     public void setB(boolean b) {
-        this.b.setStatus(b);
-        update();
+        this.b.setOn(b);
     }
 
     public void setCarryIn(boolean cin) {
-        carryIn.setStatus(cin);
-        update();
+        carryIn.setOn(cin);
     }
 
+    public boolean getSum() {
+        return sum.isOn();
+    }
 
-    private void update() {
-        addAB.setA(a.getStatus());
-        addAB.setB(b.getStatus());
+    public boolean getCarryOut() {
+        return sum.isOn();
+    }
+
+    public void update() {
+        addAB.setA(a.isOn());
+        addAB.setB(b.isOn());
 
         addCarry.setA(addAB.isOn());
-        addCarry.setB(carryIn.getStatus());
+        addCarry.setB(carryIn.isOn());
 
-        abCarry.setA(a.getStatus());
-        abCarry.setB(b.getStatus());
+        abCarry.setA(a.isOn());
+        abCarry.setB(b.isOn());
 
         sumAndCarry.setA(addAB.isOn());
-        sumAndCarry.setB(carryIn.getStatus());
+        sumAndCarry.setB(carryIn.isOn());
 
         carryOrCarry.setA(abCarry.isOn());
         carryOrCarry.setB(sumAndCarry.isOn());
 
-        sum.setStatus(addCarry.isOn());
-        carryOut.setStatus(carryOrCarry.isOn());
-    }
-
-    public boolean getSum() {
-        return sum.getStatus();
-    }
-
-    public boolean getCarryOut() {
-        return sum.getStatus();
+        sum.setOn(addCarry.isOn());
+        carryOut.setOn(carryOrCarry.isOn());
     }
 }

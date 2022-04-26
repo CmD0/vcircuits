@@ -1,9 +1,11 @@
 package ca.vcircuits.gates;
 
-public class OrGate extends Gate{
+public class OrGate implements Gate{
     
     private boolean a = false;
     private boolean b = false;
+
+    private boolean o = false;
 
     public OrGate() {}
 
@@ -14,16 +16,19 @@ public class OrGate extends Gate{
 
     public void setA(boolean a) {
         this.a = a;
-        update();
     }
 
     public void setB(boolean b) {
         this.b = b;
-        update();
     }
 
     @Override
-    protected void update() {
+    public void update() {
         o = a || b;
+    }
+
+    @Override
+    public boolean isOn() {
+        return o;
     }
 }
